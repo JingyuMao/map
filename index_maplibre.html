@@ -731,25 +731,25 @@
 
         const markerSize = stop.pinIcon ? 17 : (isTerminal ? 18 : 13);
         const gap = 6;
-        let anchor, offset;
+        let labelAnchor, labelOffset;
         if (pos === 'right') {
-          anchor = 'left';
-          offset = [markerSize / 2 + gap + dx, dy];
+          labelAnchor = 'left';
+          labelOffset = [markerSize / 2 + gap + dx, dy];
         } else if (pos === 'left') {
-          anchor = 'right';
-          offset = [-(markerSize / 2 + gap + dx), dy];
+          labelAnchor = 'right';
+          labelOffset = [-(markerSize / 2 + gap + dx), dy];
         } else {
           const yOffset = pos === 'above'
             ? -(markerSize / 2 + gap + dy)
             : (markerSize / 2 + gap + dy);
-          anchor = pos === 'above' ? 'bottom' : 'top';
-          offset = [dx, yOffset];
+          labelAnchor = pos === 'above' ? 'bottom' : 'top';
+          labelOffset = [dx, yOffset];
         }
 
         new maplibregl.Marker({
           element: labelEl,
-          anchor,
-          offset
+          anchor: labelAnchor,
+          offset: labelOffset
         })
           .setLngLat(stopLngLat)
           .addTo(map);
